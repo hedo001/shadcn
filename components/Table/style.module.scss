@@ -12,7 +12,23 @@
   }
   .button {
     display: flex;
+    align-items: center;
     gap: 8px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid #e4e4e7;
+
+    /* shadow-sm */
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
   }
 }
 .popover {
@@ -48,8 +64,35 @@
       height: 16px;
     }
   }
+  td {
+    button {
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
 }
 .mainTable {
   border: 1px solid #e4e4e7;
   border-radius: 6px;
+  .select {
+    display: flex;
+    width: fit-content;
+    // padding: 2px 10px;
+    border-radius: var(--radius-rounded-md, 6px);
+    border: 1px solid var(--border-border-border, #e4e4e7);
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 1px solid #e4e4e7;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 16px; /* 133.333% */
+    svg{
+      width: 16px;
+      height: 16px;
+    }
+  }
 }

@@ -18,8 +18,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Arrow } from "@/app/assets/icons";
-import { ChevronsDownUp, ChevronsUpDown } from "lucide-react";
+import { Arrow, Threedots } from "@/app/assets/icons";
+import { ChevronsDownUp, ChevronsUpDown, MoreHorizontal } from "lucide-react";
+import { Button } from "../ui/button";
 const MyTable = () => {
   let data = [
     {
@@ -54,16 +55,6 @@ const MyTable = () => {
         <TableHeader>
           <TableRow>
             <TableHead>
-              {/* <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Full name" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="apple">Apple</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select> */}
               <div className={stl.theader}>
                 {" "}
                 Full name <ChevronsUpDown />
@@ -93,9 +84,34 @@ const MyTable = () => {
             return (
               <TableRow key={index}>
                 <TableCell>{item.name}</TableCell>
-                <TableCell>{item.status}</TableCell>
+                <TableCell>
+                  <Select>
+                    <SelectTrigger className={stl.select}>
+                      <SelectValue placeholder={item.status} />
+                      
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem className={stl.item} value="stable">
+                          stable
+                        </SelectItem>
+                        <SelectItem className={stl.item} value="canLeave">
+                          can leave
+                        </SelectItem>
+                        <SelectItem className={stl.item} value="warning">
+                          warning
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </TableCell>
                 <TableCell>{item.date}</TableCell>
                 <TableCell>{item.level}</TableCell>
+                <TableCell>
+                  <Button variant="ghost">
+                    <Threedots />
+                  </Button>
+                </TableCell>
               </TableRow>
             );
           })}

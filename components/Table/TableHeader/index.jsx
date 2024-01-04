@@ -10,8 +10,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import stl from "../style.module.scss";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { on } from "events";
+// import { useForm } from "react-hook-form";
+
+import { X } from "lucide-react";
+
 const TableHeader = () => {
   const [checked, setChecked] = useState([]);
   const [proiority, setPriority] = useState([]);
@@ -72,18 +74,17 @@ const TableHeader = () => {
           {checked.length > 0
             ? checked.map((item, index) => {
                 return (
-                  <Button
-                    key={index}
-                    // onClick={() => {
-                    //   setChecked((prev) => [
-                    //     ...prev.filter((item) => item !== item),
-                    //   ]);
-                    // }}
-                    className={stl.button}
-                    variant="outline"
-                  >
+                  <div key={index} className={stl.button} variant="outline">
                     {item}
-                  </Button>
+                    <button
+                      onClick={() => {
+                        onCheckedChange(false, item, setChecked);
+                      }}
+                    >
+                      {" "}
+                      <X />
+                    </button>
+                  </div>
                 );
               })
             : null}
@@ -120,18 +121,16 @@ const TableHeader = () => {
         {proiority.length > 0
           ? proiority.map((item, index) => {
               return (
-                <Button
-                  key={index}
-                  // onClick={() => {
-                  //   setPriority((prev) => [
-                  //     ...prev.filter((item) => item !== item),
-                  //   ]);
-                  // }}
-                  className={stl.button}
-                  variant="outline"
-                >
+                <div key={index} className={stl.button}>
                   {item}
-                </Button>
+                  <button
+                    onClick={() => {
+                      onCheckedChange(false, item, setPriority);
+                    }}
+                  >
+                    <X />
+                  </button>
+                </div>
               );
             })
           : null}
