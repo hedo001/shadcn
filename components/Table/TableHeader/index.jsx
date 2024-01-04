@@ -70,9 +70,10 @@ const TableHeader = () => {
         </Popover>
         <Popover>
           {checked.length > 0
-            ? checked.map((item) => {
+            ? checked.map((item, index) => {
                 return (
                   <Button
+                    key={index}
                     // onClick={() => {
                     //   setChecked((prev) => [
                     //     ...prev.filter((item) => item !== item),
@@ -117,9 +118,10 @@ const TableHeader = () => {
           </PopoverContent>
         </Popover>
         {proiority.length > 0
-          ? proiority.map((item) => {
+          ? proiority.map((item, index) => {
               return (
                 <Button
+                  key={index}
                   // onClick={() => {
                   //   setPriority((prev) => [
                   //     ...prev.filter((item) => item !== item),

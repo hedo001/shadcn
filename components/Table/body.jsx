@@ -91,7 +91,7 @@ const MyTable = () => {
         <TableBody>
           {data.map((item, index) => {
             return (
-              <TableRow>
+              <TableRow key={index}>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.status}</TableCell>
                 <TableCell>{item.date}</TableCell>
