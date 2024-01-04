@@ -11,15 +11,25 @@ import { Button } from "@/components/ui/button";
 import stl from "../style.module.scss";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { on } from "events";
 const TableHeader = () => {
   const [checked, setChecked] = useState([]);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const [proiority, setPriority] = useState([]);
 
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  // } = useForm();
+
+  const onCheckedChange = (data, title, cheked) => {
+    if (data) {
+      cheked((prev) => [...prev, title]);
+    } else {
+      cheked((prev) => [...prev.filter((item) => item !== title)]);
+    }
+  };
   return (
     <div className={stl.tableHeader}>
       <div className={stl.filter}>
@@ -33,7 +43,7 @@ const TableHeader = () => {
               <Checkbox
                 id=" Stable"
                 onCheckedChange={(id) =>
-                  id ? setChecked([...checked, "Stable"]) : null
+                  onCheckedChange(id, "Stable", setChecked)
                 }
               />
               Stable
@@ -42,7 +52,7 @@ const TableHeader = () => {
               <Checkbox
                 id="Can leave"
                 onCheckedChange={(id) =>
-                  id ? setChecked([...checked, "Can leave"]) : null
+                  onCheckedChange(id, "Can leave", setChecked)
                 }
               />
               Can leave
@@ -50,7 +60,7 @@ const TableHeader = () => {
             <Label>
               <Checkbox
                 onCheckedChange={(id) =>
-                  id ? setChecked([...checked, "Warning"]) : null
+                  onCheckedChange(id, "Warning", setChecked)
                 }
                 id="Warning"
               />
@@ -62,7 +72,15 @@ const TableHeader = () => {
           {checked.length > 0
             ? checked.map((item) => {
                 return (
-                  <Button className={stl.button} variant="outline">
+                  <Button
+                    // onClick={() => {
+                    //   setChecked((prev) => [
+                    //     ...prev.filter((item) => item !== item),
+                    //   ]);
+                    // }}
+                    className={stl.button}
+                    variant="outline"
+                  >
                     {item}
                   </Button>
                 );
@@ -73,19 +91,48 @@ const TableHeader = () => {
           </PopoverTrigger>
           <PopoverContent className={stl.content}>
             <Label>
-              <Checkbox onCheckedChange={(e) => console.log(e)} />
+              <Checkbox
+                onCheckedChange={(id) => {
+                  onCheckedChange(id, "Level 1", setPriority);
+                }}
+              />
               Level 1
             </Label>
             <Label>
-              <Checkbox />
+              <Checkbox
+                onCheckedChange={(id) => {
+                  onCheckedChange(id, "Level 2", setPriority);
+                }}
+              />
               Level 2
             </Label>
             <Label>
-              <Checkbox />
+              <Checkbox
+                onCheckedChange={(id) => {
+                  onCheckedChange(id, "Level 3", setPriority);
+                }}
+              />
               Level 3
             </Label>
           </PopoverContent>
         </Popover>
+        {proiority.length > 0
+          ? proiority.map((item) => {
+              return (
+                <Button
+                  // onClick={() => {
+                  //   setPriority((prev) => [
+                  //     ...prev.filter((item) => item !== item),
+                  //   ]);
+                  // }}
+                  className={stl.button}
+                  variant="outline"
+                >
+                  {item}
+                </Button>
+              );
+            })
+          : null}
       </div>
       <Button className={stl.button} variant="outline">
         <ViewsIcon /> Views

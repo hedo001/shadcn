@@ -38,6 +38,16 @@
 .table {
   padding: 24px 32px;
   width: 100%;
+  .theader {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
 }
 .mainTable {
   border: 1px solid #e4e4e7;

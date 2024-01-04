@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Arrow } from "@/app/assets/icons";
+import { ChevronsDownUp, ChevronsUpDown } from "lucide-react";
 const MyTable = () => {
   let data = [
     {
@@ -63,11 +64,28 @@ const MyTable = () => {
                   </SelectGroup>
                 </SelectContent>
               </Select> */}
-              Full name
+              <div className={stl.theader}>
+                {" "}
+                Full name <ChevronsUpDown />
+              </div>
             </TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Date of receipt</TableHead>
-            <TableHead>Level</TableHead>
+            <TableHead>
+              <div className={stl.theader}>
+                {" "}
+                Status <ChevronsUpDown />
+              </div>
+            </TableHead>
+            <TableHead>
+              <div className={stl.theader}>
+                {" "}
+                Date of receipt <ChevronsUpDown />
+              </div>
+            </TableHead>
+            <TableHead>
+              <div className={stl.theader}>
+                Level <ChevronsUpDown />
+              </div>
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
